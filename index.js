@@ -28,12 +28,12 @@ async function onRecord(record, mappings) {
     const mapped = grist.mapColumnNames(record);
     // First check if all columns were mapped.
     if (mapped) {
-      colId = mappings[colName_table];
+      /*colId = mappings[colName_table];
       colId2 = mappings[colName_column];
-      colId3 = mappings[colName_id];
-      data.status = grist.docApi.fetchTable(record[colId]);
-      /*await grist.docApi.applyUserActions([['UpdateRecord', record[colId], record[colId3], {
-        [colId2]: true
+      colId3 = mappings[colName_id];*/
+      data.status = await grist.docApi.fetchTable(mapped[colName_table]);
+      /*await grist.docApi.applyUserActions([['UpdateRecord', mapped[colName_table], mapped[colName_id], {
+        [colName_column]: true
       }]]);*/
       //data.status = `All done.`;
     } else {
