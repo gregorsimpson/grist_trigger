@@ -31,7 +31,7 @@ async function onRecord(record, mappings) {
       colId = mappings[colName_table];
       colId2 = mappings[colName_column];
       colId3 = mappings[colName_id];
-      data.status = grist.docApi.fetchTable(record[colId])
+      data.status = grist.docApi.fetchTable(record[colId]);
       /*await grist.docApi.applyUserActions([['UpdateRecord', record[colId], record[colId3], {
         [colId2]: true
       }]]);*/
