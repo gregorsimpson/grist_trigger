@@ -60,9 +60,9 @@ ready(async function() {
     requiredAccess: "full",
     allowSelectBy: true,
     columns: [
-      {name: colName_table, title: "User Actions (list of lists)"},
-      {name: colName_column, title: "Trigger (bool)"},
-      {name: colName_id, title: "Set selected rows (list of IDs)"}
+      {name: colName_table, title: "Table (name of the)"},
+      {name: colName_column, title: "Column (name of the)"},
+      {name: colName_id, title: "ID (of the target record)"}
     ]
   });
 });
