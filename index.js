@@ -44,7 +44,7 @@ async function onRecord(record, mappings) {
           }]]);
         }
       }
-      data.status = `All done. ${colName_trigger} ################ {mappings} ############## {mapped}`;
+      data.status = `All done. ################ ${mappings} ############## ${mapped}`;
     } else {
       // Helper returned a null value. It means that not all
       // required columns were mapped.
