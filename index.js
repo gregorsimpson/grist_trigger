@@ -26,26 +26,25 @@ async function onRecord(record, mappings) {
     const mapped = grist.mapColumnNames(record);
     // First check if all columns were mapped.
     if (mapped) {
-      let triggerColName = mapped[colName_trigger];
-      data.status = `triggerColName="${triggerColName}"`;
-      return;
-      let tableName = mapped[colName_table];
-      let id = mapped[colName_id];
-      let columnName = mapped[colName_column];
-      let tableData = await grist.docApi.fetchTable(tableName);
-      let i = tableData.id.indexOf(id);
-      let value = tableData[columnName][i];
-      let isTriggered = tableData[triggerColName][i];
+      let isTriggered = mapped[colName_trigger];
       if (isTriggered) {
+        let tableName = mapped[colName_table];
+        let id = mapped[colName_id];
+        let columnName = mapped[colName_column];
+        let tableData = await grist.docApi.fetchTable(tableName);
+        let i = tableData.id.indexOf(id);
+        let value = tableData[columnName][i];
         //data.status = `value is "${value}"`;
         if (!value) {
+          await grist.docApi.applyUserActions([['UpdateRecord', tableId, record.id, {
+            [colName_trigger]: false
+          }]]);
           await grist.docApi.applyUserActions([['UpdateRecord', tableName, id, {
-            [columnName]: true,
-            [triggerColName]: false
+            [columnName]: true
           }]]);
         }
       }
-      data.status = `All done.`;
+      data.status = `All done. ${colName_trigger} ################ {mappings} ############## {mapped}`;
     } else {
       // Helper returned a null value. It means that not all
       // required columns were mapped.
