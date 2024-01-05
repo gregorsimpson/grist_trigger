@@ -1,0 +1,23 @@
+body {
+  font-family: Sans-Serif;
+  padding: 0;
+  margin: 0;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#app {
+}
+
+.status {
+  margin-top: 20px;
+  color: orange;
+}
+
+.description {
+  font-size: 8pt;
+}
