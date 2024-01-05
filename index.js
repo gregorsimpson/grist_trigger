@@ -13,10 +13,7 @@ const colName_trigger = 'Trigger';
 var tableId = null;
 let app = undefined;
 let data = {
-  status: 'Please select a record.',
-  userActions: null,
-  trigger: false,
-  setSelectedRows: null
+  status: 'Please select a record.'
 }
 
 function handleError(err) {
@@ -30,6 +27,8 @@ async function onRecord(record, mappings) {
     // First check if all columns were mapped.
     if (mapped) {
       let triggerColName = mapped[colName_trigger];
+      data.status = `triggerColName="${triggerColName}"`;
+      return;
       let tableName = mapped[colName_table];
       let id = mapped[colName_id];
       let columnName = mapped[colName_column];
