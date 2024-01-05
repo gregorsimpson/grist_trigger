@@ -45,7 +45,7 @@ async function onRecord(record, mappedColNamesToRealColNames) {
           }]]);
         }
       }
-      data.status = `All done. isTriggered="${isTriggered}" actual="${record.trigger_the_trigger}"`;
+      data.status = `All done.`;
     } else {
       // Helper returned a null value. It means that not all
       // required columns were mapped.
