@@ -37,11 +37,16 @@ async function onRecord(record, mappings) {
       let tableData = await grist.docApi.fetchTable(tableName);
       let i = tableData.id.indexOf(id);
       let value = tableData[columnName][i];
-      data.status = `value is "${value}"`;
+      //data.status = `value is "${value}"`;
+      if (!value) {
+        await grist.docApi.applyUserActions([['UpdateRecord', tableName, id, {
+          [columnName]: true
+        }]]);
+      }
       /*await grist.docApi.applyUserActions([['UpdateRecord', tableName, id, {
         [columnName]: true
       }]]);*/
-      //data.status = `All done.`;
+      data.status = `All done.`;
     } else {
       // Helper returned a null value. It means that not all
       // required columns were mapped.
