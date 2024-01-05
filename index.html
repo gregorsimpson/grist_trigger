@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Grist Trigger Widget</title>
+
+    <!-- Uses Vue.js and the Grist Plugin API -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+
+    <script src="index.js?ver=1"></script>
+    <link rel="stylesheet" href="style.css?ver=1">
+  </head>
+  <body>
+    <div id="app">
+      <div class="description">
+        This widget will automatically set the specified 'Trigger' field on the
+        record with id 'ID' from 'Table' to True everytime it gets loaded.
+      </div>
+      <div class="status" v-if="status">
+        <b>Status:</b>
+        <pre>{{status}}</pre>
+      </div>
+    </div>
+  </body>
+</html>
