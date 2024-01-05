@@ -38,7 +38,8 @@ async function onRecord(record, mappedColNamesToRealColNames) {
         let tableData = await grist.docApi.fetchTable(tableName);
         let i = tableData.id.indexOf(id);
         let value = tableData[columnName][i];
-        //data.status = `value is "${value}"`;
+        data.status = `value is "${value}"`;
+        return;
         if (!value) {
           await grist.docApi.applyUserActions([['UpdateRecord', tableName, id, {
             [columnName]: true
