@@ -9,7 +9,8 @@
 const colName_table = 'Table';
 const colName_column = 'Column';
 const colName_id = 'ID';
-const colName_trigger = 'Trigger';
+const colName_safety = 'Safety';
+var isJobDone = false;
 var tableId = null;
 let app = undefined;
 let data = {
@@ -26,11 +27,12 @@ async function onRecord(record, mappedColNamesToRealColNames) {
     const record_mapped = grist.mapColumnNames(record);
     // First check if all columns were mapped.
     if (record_mapped) {
-      let isTriggered = record_mapped[colName_trigger];
-      if (isTriggered) {
-        let triggerColumnName = mappedColNamesToRealColNames[colName_trigger];
+      let isSafetyOn = record_mapped[colName_safety];
+      if (!isSafetyOn && !isJobDone) {
+        isJobDone = true;
+        let safetyColumnName = mappedColNamesToRealColNames[colName_safety];
         /*await grist.docApi.applyUserActions([['UpdateRecord', tableId, record.id, {
-          [triggerColumnName]: false
+          [safetyColumnName]: false
         }]]);*/
         let tableName = record_mapped[colName_table];
         let id = record_mapped[colName_id];
@@ -72,7 +74,7 @@ ready(async function() {
       {name: colName_table, title: "Table (name of the)"},
       {name: colName_column, title: "Column (name of the)"},
       {name: colName_id, title: "ID (of the target record)"},
-      {name: colName_trigger, title: "Trigger (bool)"}
+      {name: colName_safety, title: "Safety switch (bool)"}
     ]
   });
 });
