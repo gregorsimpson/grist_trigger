@@ -14,8 +14,10 @@
   <body>
     <div id="app">
       <div class="description">
-        This widget will automatically set the specified 'Trigger' field on the
-        record with id 'ID' from 'Table' to True everytime it gets loaded.
+        This widget will automatically set the value on the specified 'Column' of the
+        record with 'ID' from 'Table' to <i>True</i> everytime it gets updated, if the
+        'Trigger' column currently has a value of <i>True</i> as well. It will run only
+        once, resetting 'Trigger' to <i>False</i> after its job is done.
       </div>
       <div class="status" v-if="status">
         <b>Status:</b>
