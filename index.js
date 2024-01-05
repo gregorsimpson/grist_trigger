@@ -29,6 +29,9 @@ async function onRecord(record, mappedColNamesToRealColNames) {
       let isTriggered = record_mapped[colName_trigger];
       if (isTriggered) {
         let triggerColumnName = mappedColNamesToRealColNames[colName_trigger];
+        /*await grist.docApi.applyUserActions([['UpdateRecord', tableId, record.id, {
+          [triggerColumnName]: false
+        }]]);*/
         let tableName = record_mapped[colName_table];
         let id = record_mapped[colName_id];
         let columnName = record_mapped[colName_column];
@@ -36,9 +39,6 @@ async function onRecord(record, mappedColNamesToRealColNames) {
         let i = tableData.id.indexOf(id);
         let value = tableData[columnName][i];
         //data.status = `value is "${value}"`;
-        await grist.docApi.applyUserActions([['UpdateRecord', tableId, record.id, {
-          [triggerColumnName]: false
-        }]]);
         if (!value) {
           await grist.docApi.applyUserActions([['UpdateRecord', tableName, id, {
             [columnName]: true
